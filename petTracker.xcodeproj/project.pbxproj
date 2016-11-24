@@ -14,6 +14,7 @@
 		55A2CF341DE36EF10024C82F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55A2CF321DE36EF10024C82F /* LaunchScreen.storyboard */; };
 		55D283FF1DE653A700EF5B0A /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D283FE1DE653A700EF5B0A /* loginViewController.swift */; };
 		55D284011DE66EBF00EF5B0A /* taskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D284001DE66EBF00EF5B0A /* taskViewController.swift */; };
+		55D284031DE6973E00EF5B0A /* registerUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D284021DE6973E00EF5B0A /* registerUserViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		55A2CF351DE36EF10024C82F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55D283FE1DE653A700EF5B0A /* loginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loginViewController.swift; sourceTree = "<group>"; };
 		55D284001DE66EBF00EF5B0A /* taskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = taskViewController.swift; sourceTree = "<group>"; };
+		55D284021DE6973E00EF5B0A /* registerUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = registerUserViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				55A2CF351DE36EF10024C82F /* Info.plist */,
 				55D283FE1DE653A700EF5B0A /* loginViewController.swift */,
 				55D284001DE66EBF00EF5B0A /* taskViewController.swift */,
+				55D284021DE6973E00EF5B0A /* registerUserViewController.swift */,
 			);
 			path = petTracker;
 			sourceTree = "<group>";
@@ -142,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				55A2CF2C1DE36EF10024C82F /* ViewController.swift in Sources */,
+				55D284031DE6973E00EF5B0A /* registerUserViewController.swift in Sources */,
 				55D284011DE66EBF00EF5B0A /* taskViewController.swift in Sources */,
 				55A2CF2A1DE36EF10024C82F /* AppDelegate.swift in Sources */,
 				55D283FF1DE653A700EF5B0A /* loginViewController.swift in Sources */,

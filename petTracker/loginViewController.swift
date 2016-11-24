@@ -14,6 +14,10 @@ class loginViewController: UIViewController {
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
     
+  
+    @IBAction func registerUser(segue: UIStoryboardSegue) {
+        
+    }
 
     @IBAction func login(segue: UIStoryboardSegue) {
         
