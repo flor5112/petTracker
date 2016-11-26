@@ -10,19 +10,18 @@ import UIKit
 
 class taskViewController: UIViewController {
     
+    var email: String = ""
+    var username: String = ""
+    var userId: String = ""
+    @IBOutlet weak var welcomeLabel: UILabel!
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if(segue.identifier == "taskView")
-        {
-            if let unwound = segue.destinationViewController as? loginViewController{
-                
-            }
-        }
-    }
-
     override func viewDidLoad() {
+        
+        welcomeLabel.text = "\(username)'s Pet List "
         super.viewDidLoad()
-
+        print("Inside taskView \(email)")
+        print("user ID: \(userId)")
+        print("username: \(username)")
         // Do any additional setup after loading the view.
     }
 

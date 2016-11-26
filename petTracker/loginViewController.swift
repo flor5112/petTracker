@@ -16,12 +16,14 @@ class loginViewController: UIViewController {
     
   
     @IBAction func registerUser(segue: UIStoryboardSegue) {
-        
-    }
+        NSOperationQueue.mainQueue().addOperationWithBlock {
+            self.performSegueWithIdentifier("registerUserView", sender: self)
+        }    }
+    
 
     @IBAction func login(segue: UIStoryboardSegue) {
         
-        var  isValidLogin: String = " "
+        var  isValidLogin: String = ""
         
         if(username.text?.isEmpty ?? true || password.text?.isEmpty ?? true)
         {
@@ -32,17 +34,21 @@ class loginViewController: UIViewController {
         else
         {
             let petUrl = NSURL(string: "https://pettrackerapp.herokuapp.com/user/login")
+            
             let request = NSMutableURLRequest(URL:petUrl!)
+            
             request.HTTPMethod = "POST"
+            
             let postString = "username=" + username.text! +
                              "&password=" + password.text!
+            
             //start session/request
             request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
             
             let task = NSURLSession.sharedSession().dataTaskWithRequest(request){
                 (data, response, error) in
                 do {
-                    guard let json = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSDictionary else {
+                     guard let json = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSDictionary else {
                         return
                     }
                     isValidLogin = json["result"]! as! String
@@ -51,16 +57,23 @@ class loginViewController: UIViewController {
                     print(error.debugDescription)
                 }
                 
-                if(isValidLogin == "true"){
-                  print(isValidLogin)
+                if(isValidLogin == "true")
+                {
+                    print(isValidLogin)
                     self.continueToTaskView(isValidLogin)
                 }
                 else
                 {
-                 print(isValidLogin)
-                    /*  let invalidCredetialAlert = UIAlertController(title: "Invalid Credentials", message: "invalid username or password", preferredStyle: UIAlertControllerStyle.Alert)
-                    invalidCredetialAlert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
-                    self.presentViewController(invalidCredetialAlert, animated: true, completion: nil)*/
+                    print(isValidLogin)
+                    
+                    NSOperationQueue.mainQueue().addOperationWithBlock {
+                    let errorAlert = UIAlertController(title: "Invalid Credentials", message: "Incorrect username or password", preferredStyle:UIAlertControllerStyle.Alert)
+                    errorAlert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+                    self.presentViewController(errorAlert, animated: true, completion: nil)
+                    self.username.text = ""
+                    self.password.text = ""
+                    }
+                    return
                 }
             }
             task.resume()
@@ -76,6 +89,7 @@ class loginViewController: UIViewController {
                 self.performSegueWithIdentifier("taskView", sender: self)
             }
         }
+        
     }
     
      override func viewDidLoad() {

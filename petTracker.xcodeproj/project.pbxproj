@@ -15,6 +15,7 @@
 		55D283FF1DE653A700EF5B0A /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D283FE1DE653A700EF5B0A /* loginViewController.swift */; };
 		55D284011DE66EBF00EF5B0A /* taskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D284001DE66EBF00EF5B0A /* taskViewController.swift */; };
 		55D284031DE6973E00EF5B0A /* registerUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D284021DE6973E00EF5B0A /* registerUserViewController.swift */; };
+		55D284051DE93A0900EF5B0A /* taskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D284041DE93A0900EF5B0A /* taskTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		55D283FE1DE653A700EF5B0A /* loginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loginViewController.swift; sourceTree = "<group>"; };
 		55D284001DE66EBF00EF5B0A /* taskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = taskViewController.swift; sourceTree = "<group>"; };
 		55D284021DE6973E00EF5B0A /* registerUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = registerUserViewController.swift; sourceTree = "<group>"; };
+		55D284041DE93A0900EF5B0A /* taskTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = taskTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				55D283FE1DE653A700EF5B0A /* loginViewController.swift */,
 				55D284001DE66EBF00EF5B0A /* taskViewController.swift */,
 				55D284021DE6973E00EF5B0A /* registerUserViewController.swift */,
+				55D284041DE93A0900EF5B0A /* taskTableViewController.swift */,
 			);
 			path = petTracker;
 			sourceTree = "<group>";
@@ -144,6 +147,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55D284051DE93A0900EF5B0A /* taskTableViewController.swift in Sources */,
 				55A2CF2C1DE36EF10024C82F /* ViewController.swift in Sources */,
 				55D284031DE6973E00EF5B0A /* registerUserViewController.swift in Sources */,
 				55D284011DE66EBF00EF5B0A /* taskViewController.swift in Sources */,
