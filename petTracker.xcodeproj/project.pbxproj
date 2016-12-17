@@ -16,6 +16,7 @@
 		55D284011DE66EBF00EF5B0A /* taskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D284001DE66EBF00EF5B0A /* taskViewController.swift */; };
 		55D284031DE6973E00EF5B0A /* registerUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D284021DE6973E00EF5B0A /* registerUserViewController.swift */; };
 		55D284051DE93A0900EF5B0A /* taskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D284041DE93A0900EF5B0A /* taskTableViewController.swift */; };
+		6383412B1E05FB7000A382A4 /* PetTrackerLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 6383412A1E05FB7000A382A4 /* PetTrackerLogo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		55D284001DE66EBF00EF5B0A /* taskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = taskViewController.swift; sourceTree = "<group>"; };
 		55D284021DE6973E00EF5B0A /* registerUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = registerUserViewController.swift; sourceTree = "<group>"; };
 		55D284041DE93A0900EF5B0A /* taskTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = taskTableViewController.swift; sourceTree = "<group>"; };
+		6383412A1E05FB7000A382A4 /* PetTrackerLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PetTrackerLogo.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 		55A2CF281DE36EF10024C82F /* petTracker */ = {
 			isa = PBXGroup;
 			children = (
+				6383412A1E05FB7000A382A4 /* PetTrackerLogo.png */,
 				55A2CF291DE36EF10024C82F /* AppDelegate.swift */,
 				55A2CF2B1DE36EF10024C82F /* ViewController.swift */,
 				55A2CF2D1DE36EF10024C82F /* Main.storyboard */,
@@ -137,6 +140,7 @@
 				55A2CF341DE36EF10024C82F /* LaunchScreen.storyboard in Resources */,
 				55A2CF311DE36EF10024C82F /* Assets.xcassets in Resources */,
 				55A2CF2F1DE36EF10024C82F /* Main.storyboard in Resources */,
+				6383412B1E05FB7000A382A4 /* PetTrackerLogo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

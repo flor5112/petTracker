@@ -34,98 +34,97 @@ class registerUserViewController: UIViewController {
             print("EmptyFields")
             let alert = UIAlertController(title: "Empty Fields", message: "All fields must be fill out", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
-            self.presentViewController(alert, animated: true, completion: nil)    }
-    //validate for password and confirm password match 
-    if( password.text != confirmPassword.text ){
-          print("passwords don't match")
-          password.text = ""
-          confirmPassword.text = ""
-          passErrorMessage.hidden = false
-    }
-    else{
-        passErrorMessage.hidden = true
-    }
-    if(email.text != confirmEmail.text){
-        print("emails don't match")
-        email.text = ""
-        confirmEmail.text = ""
-        emailErrorMessage.hidden = false
-    }
-    else{
-        emailErrorMessage.hidden = true
-    }
-    if(self.passErrorMessage.hidden == false || self.emailErrorMessage.hidden == false )
-    {
-            return
-    }
-    print("connecting to backend")
-    //connect backend to register user
-    let petUrl = NSURL(string: "https://pettrackerapp.herokuapp.com/user/register")
-        let request = NSMutableURLRequest(URL:petUrl!)
-        request.HTTPMethod = "POST"
-        let postString = "username=" + username.text! +
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
+        else{
+            //validate for password and confirm password match
+            if( password.text != confirmPassword.text ){
+                print("passwords don't match")
+                password.text = ""
+                confirmPassword.text = ""
+                passErrorMessage.hidden = false
+            }
+            else{
+                passErrorMessage.hidden = true
+            }
+            if(email.text != confirmEmail.text){
+                print("emails don't match")
+                email.text = ""
+                confirmEmail.text = ""
+                emailErrorMessage.hidden = false
+            }
+            else{
+                emailErrorMessage.hidden = true
+            }
+            if(self.passErrorMessage.hidden == false || self.emailErrorMessage.hidden == false ){
+                return
+            }
+            print("connecting to backend")
+            //connect backend to register user
+            let petUrl = NSURL(string: "https://pettrackerapp.herokuapp.com/user/register")
+            let request = NSMutableURLRequest(URL:petUrl!)
+            request.HTTPMethod = "POST"
+            let postString = "username=" + username.text! +
                          "&password=" + password.text! +
                          "&email=" + email.text!
-        //start session/request
-        request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
+            //start session/request
+            request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
         
-        let task = NSURLSession.sharedSession().dataTaskWithRequest(request){
-            (data, response, error) in
-            do {
-                guard let json = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSDictionary else {
-                    return
-                }
-                emailValue = json["email"]! as! String
-                usernameValue = json["username"]! as! String
+            let task = NSURLSession.sharedSession().dataTaskWithRequest(request){
+                (data, response, error) in
+                do {
+                    guard let json = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSDictionary else {
+                        return
+                    }
+                    emailValue = json["email"]! as! String
+                    usernameValue = json["username"]! as! String
                 
-                if let id = json["userId"] as? String {
-                    self.userId = id
-                }
-                print(json)
-                print("\(emailValue), \(usernameValue), \(self.userId)")
+                    if let id = json["userId"] as? String {
+                        self.userId = id
+                    }
+                    print(json)
+                    print("\(emailValue), \(usernameValue), \(self.userId)")
                 
-                if(emailValue == "false" && usernameValue == "false")
-                {
-                    NSOperationQueue.mainQueue().addOperationWithBlock {
-                       let errorAlert = UIAlertController(title: "Invalid Username and Email", message: "An account with \(self.username.text!) and \(self.email.text!) alredy exists", preferredStyle: UIAlertControllerStyle.Alert)
-                           errorAlert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+                    if(emailValue == "false" && usernameValue == "false"){
+                        NSOperationQueue.mainQueue().addOperationWithBlock {
+                            let errorAlert = UIAlertController(title: "Invalid Username and Email", message: "An account with \(self.username.text!) and \(self.email.text!) alredy exists", preferredStyle: UIAlertControllerStyle.Alert)
+                            errorAlert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+                            self.presentViewController(errorAlert, animated: true, completion: nil)
+                        }
+                    }
+                    if(emailValue == "false"){
+                        NSOperationQueue.mainQueue().addOperationWithBlock {
+                        let errorAlert = UIAlertController(title: "Invalid Email", message: "An account with email \(self.email.text) alredy exists", preferredStyle: UIAlertControllerStyle.Alert)
+                        errorAlert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
                         self.presentViewController(errorAlert, animated: true, completion: nil)
+                        }
                     }
-                }
-                if(emailValue == "false")
-                {   NSOperationQueue.mainQueue().addOperationWithBlock {
-                     let errorAlert = UIAlertController(title: "Invalid Email", message: "An account with email \(self.email.text) alredy exists", preferredStyle: UIAlertControllerStyle.Alert)
-                     errorAlert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
-                     self.presentViewController(errorAlert, animated: true, completion: nil)
+                    if(usernameValue == "false"){
+                        NSOperationQueue.mainQueue().addOperationWithBlock {
+                            let errorAlert = UIAlertController(title: "Invalid Username", message: "An account with email \(self.username.text) alredy exists", preferredStyle: UIAlertControllerStyle.Alert)
+                            errorAlert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+                            self.presentViewController(errorAlert, animated: true, completion: nil)
+                        }
                     }
-                }
-                if(usernameValue == "false")
-                {
-                    NSOperationQueue.mainQueue().addOperationWithBlock {
-                    let errorAlert = UIAlertController(title: "Invalid Username", message: "An account with email \(self.username.text) alredy exists", preferredStyle: UIAlertControllerStyle.Alert)
-                    errorAlert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
-                        self.presentViewController(errorAlert, animated: true, completion: nil)
-                    }
-                }
                 
-                NSOperationQueue.mainQueue().addOperationWithBlock {
-                    self.performSegueWithIdentifier("taskViewFromRegister", sender: self)
-                }
+                    NSOperationQueue.mainQueue().addOperationWithBlock {
+                        self.performSegueWithIdentifier("taskViewFromRegister", sender: self)
+                    }
                 
             } catch let error as NSError {
                 print(error.debugDescription)
+                }
             }
+            task.resume()
+            print("Registered User")
         }
-        task.resume()
-        print("Registered User")
         
-}
+    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         print("preparing Segue")
         
-        if(segue.identifier == "taskViewFromRegister")
-        {
+        if(segue.identifier == "taskViewFromRegister"){
             if let destination = segue.destinationViewController as? taskViewController {
                 destination.email = self.email.text!
                 destination.username = self.username.text!
