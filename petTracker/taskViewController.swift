@@ -16,9 +16,7 @@ class taskViewController: UIViewController{
     @IBOutlet weak var welcomeLabel: UILabel!
     
     override func viewDidLoad() {
-        
-        welcomeLabel.text = "\(username)'s Pet List "
-      
+        //welcomeLabel.text = "\(username)'s Pet List "
         print("Inside taskView \(email)")
         print("user ID: \(userId)")
         print("username: \(username)")

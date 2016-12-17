@@ -126,10 +126,11 @@ class registerUserViewController: UIViewController {
         
         if(segue.identifier == "taskViewFromRegister")
         {
-            if let unwound = segue.destinationViewController as? taskViewController {
-                unwound.email = self.email.text!
-                unwound.username = self.username.text!
-                unwound.userId = self.userId
+            if let destination = segue.destinationViewController as? taskViewController {
+                destination.email = self.email.text!
+                destination.username = self.username.text!
+                print("destination userID \(userId)")
+                destination.userId = self.userId
             }
         }
     }

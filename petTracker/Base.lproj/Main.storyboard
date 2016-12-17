@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="kgU-qm-yfP">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="kgU-qm-yfP">
     <dependencies>
         <deployment identifier="iOS"/>
         <development version="7000" identifier="xcode"/>
@@ -125,22 +125,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i5m-Lo-AZk">
-                                <rect key="frame" x="246" y="345" width="84" height="30"/>
-                                <state key="normal">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="login">
-                                            <attributes>
-                                                <font key="NSFont" size="21" name="MarkerFelt-Thin"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                </state>
-                                <connections>
-                                    <action selector="login:" destination="kgU-qm-yfP" eventType="touchUpInside" id="z91-Lo-acJ"/>
-                                    <segue destination="RBj-Ba-bNY" kind="show" id="o9v-8K-KXa"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ypa-9j-Bpc">
                                 <rect key="frame" x="168" y="390" width="241" height="30"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -165,6 +149,22 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i5m-Lo-AZk">
+                                <rect key="frame" x="246" y="359" width="84" height="30"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="login">
+                                            <attributes>
+                                                <font key="NSFont" size="21" name="MarkerFelt-Thin"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <connections>
+                                    <action selector="login:" destination="kgU-qm-yfP" eventType="touchUpInside" id="z91-Lo-acJ"/>
+                                    <segue destination="f4a-xJ-9Zu" kind="show" identifier="taskView" id="1eC-3l-Ixl"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
@@ -180,6 +180,24 @@
             </objects>
             <point key="canvasLocation" x="911" y="-357"/>
         </scene>
+        <!--Task View Controller-->
+        <scene sceneID="kcK-fv-2hL">
+            <objects>
+                <viewController id="f4a-xJ-9Zu" customClass="taskViewController" customModule="petTracker" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="R7v-O8-PGC"/>
+                        <viewControllerLayoutGuide type="bottom" id="tF4-tw-QJq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Rhx-cQ-TM4">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BkT-dN-8PB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1688" y="155"/>
+        </scene>
         <!--Task Table View Controller-->
         <scene sceneID="YlE-Q6-O0o">
             <objects>
@@ -190,10 +208,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="XLy-j6-OYh">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XLy-j6-OYh" id="ZRD-GK-vUw">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -209,7 +227,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1h8-rf-bPv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2313" y="-307"/>
+            <point key="canvasLocation" x="2313" y="-324"/>
         </scene>
         <!--Register User View Controller-->
         <scene sceneID="24j-n9-ENx">
@@ -240,22 +258,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BGk-ef-jAG">
-                                <rect key="frame" x="160" y="495" width="239" height="30"/>
-                                <state key="normal">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="Sign Up">
-                                            <attributes>
-                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <font key="NSFont" size="21" name="MarkerFelt-Thin"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                </state>
-                                <connections>
-                                    <action selector="signUp:" destination="3dN-5O-fKm" eventType="touchUpInside" id="fDr-i5-yKm"/>
-                                </connections>
-                            </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wbZ-zN-JhX">
                                 <rect key="frame" x="122" y="226" width="312" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -356,6 +358,23 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BGk-ef-jAG">
+                                <rect key="frame" x="160" y="495" width="239" height="30"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Sign Up">
+                                            <attributes>
+                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <font key="NSFont" size="21" name="MarkerFelt-Thin"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <connections>
+                                    <action selector="signUp:" destination="3dN-5O-fKm" eventType="touchUpInside" id="fDr-i5-yKm"/>
+                                    <segue destination="f4a-xJ-9Zu" kind="show" identifier="taskViewFromRegister" id="AId-bE-edX"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -367,33 +386,14 @@
                         <outlet property="passErrorMessage" destination="zxh-e6-zDN" id="eXD-gb-ExQ"/>
                         <outlet property="password" destination="wbZ-zN-JhX" id="Z7x-nS-NvG"/>
                         <outlet property="username" destination="bkR-5H-9l9" id="2cM-mL-XYg"/>
-                        <segue destination="RBj-Ba-bNY" kind="show" identifier="taskViewFromRegister" action="showDetailViewController:sender:" id="upc-kF-H0i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IVS-Te-bc1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="911" y="406"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="sL6-7D-7vo">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="RBj-Ba-bNY" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xrW-9r-Llb">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="fu0-kY-dAE" kind="relationship" relationship="rootViewController" id="B8U-hV-d44"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="rco-1U-wCx" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1627" y="-331"/>
+            <point key="canvasLocation" x="923" y="462"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="o9v-8K-KXa"/>
+        <segue reference="AId-bE-edX"/>
     </inferredMetricsTieBreakers>
 </document>

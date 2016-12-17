@@ -13,8 +13,7 @@ class loginViewController: UIViewController {
 
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
-    
-  
+    var userId:String = ""
     @IBAction func registerUser(segue: UIStoryboardSegue) {
         NSOperationQueue.mainQueue().addOperationWithBlock {
             self.performSegueWithIdentifier("registerUserView", sender: self)
@@ -22,8 +21,8 @@ class loginViewController: UIViewController {
     
 
     @IBAction func login(segue: UIStoryboardSegue) {
-        
-        var  isValidLogin: String = ""
+    
+        var isValidLogin:String = ""
         
         if(username.text?.isEmpty ?? true || password.text?.isEmpty ?? true)
         {
@@ -51,7 +50,8 @@ class loginViewController: UIViewController {
                      guard let json = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSDictionary else {
                         return
                     }
-                    isValidLogin = json["result"]! as! String
+                        self.userId = json["user_id"] as! String
+                        isValidLogin = json["result"] as! String
                     
                     } catch let error as NSError {
                     print(error.debugDescription)
@@ -87,10 +87,25 @@ class loginViewController: UIViewController {
         if (success == "true") {
             NSOperationQueue.mainQueue().addOperationWithBlock {
                 self.performSegueWithIdentifier("taskView", sender: self)
+                
             }
         }
         
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        print("preparing Segue")
+        
+        if(segue.identifier == "taskView")
+        {
+            if let destination = segue.destinationViewController as? taskViewController {
+                destination.username = self.username.text!
+                print("destination userID \(userId)")
+                destination.userId = self.userId
+            }
+        }
+    }
+    
     
      override func viewDidLoad() {
         super.viewDidLoad()
