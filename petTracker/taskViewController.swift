@@ -8,7 +8,7 @@
 
 import UIKit
 
-class taskViewController: UIViewController {
+class taskViewController: UIViewController{
     
     var email: String = ""
     var username: String = ""
@@ -18,7 +18,7 @@ class taskViewController: UIViewController {
     override func viewDidLoad() {
         
         welcomeLabel.text = "\(username)'s Pet List "
-        super.viewDidLoad()
+      
         print("Inside taskView \(email)")
         print("user ID: \(userId)")
         print("username: \(username)")
@@ -30,15 +30,6 @@ class taskViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+   
 
 }
