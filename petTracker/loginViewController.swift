@@ -59,12 +59,12 @@ class loginViewController: UIViewController {
                 
                 if(isValidLogin == "true")
                 {
-                    print(isValidLogin)
+                    print("isValidLogin \(isValidLogin)")
                     self.continueToTaskView(isValidLogin)
                 }
                 else
                 {
-                    print(isValidLogin)
+                    print("isValidLogin \(isValidLogin)")
                     
                     NSOperationQueue.mainQueue().addOperationWithBlock {
                     let errorAlert = UIAlertController(title: "Invalid Credentials", message: "Incorrect username or password", preferredStyle:UIAlertControllerStyle.Alert)
@@ -85,24 +85,37 @@ class loginViewController: UIViewController {
     func continueToTaskView(success: String)
     {
         if (success == "true") {
-            NSOperationQueue.mainQueue().addOperationWithBlock {
-                self.performSegueWithIdentifier("taskView", sender: self)
-                
+//            NSOperationQueue.mainQueue().addOperationWithBlock {
+//                self.performSegueWithIdentifier("taskView", sender: self)
+//                
+//            }
+            
+            dispatch_async(dispatch_get_main_queue()) {
+                NSOperationQueue.mainQueue().addOperationWithBlock {
+                    self.performSegueWithIdentifier("taskView", sender: self)
+                    
+                }
             }
+            
         }
         
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        print("preparing Segue")
+        
         
         if(segue.identifier == "taskView")
         {
+            print("preparing login Segue")
             if let destination = segue.destinationViewController as? taskViewController {
                 destination.username = self.username.text!
                 print("destination userID \(userId)")
                 destination.userId = self.userId
             }
+        }
+        
+        if(segue.identifier == "registerUserView") {
+            print("registerUserView segue")
         }
     }
     

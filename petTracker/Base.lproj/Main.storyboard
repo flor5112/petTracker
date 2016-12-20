@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="kgU-qm-yfP">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="kgU-qm-yfP">
     <dependencies>
         <deployment identifier="iOS"/>
         <development version="7000" identifier="xcode"/>
@@ -152,7 +152,6 @@
                                 </state>
                                 <connections>
                                     <action selector="login:" destination="kgU-qm-yfP" eventType="touchUpInside" id="z91-Lo-acJ"/>
-                                    <segue destination="f4a-xJ-9Zu" kind="show" identifier="taskView" id="1eC-3l-Ixl"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PetTrackerLogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="rFf-hm-6mI">
@@ -203,6 +202,7 @@
                         <outlet property="password" destination="MIH-tF-XbQ" id="myc-tg-IIc"/>
                         <outlet property="username" destination="z47-hl-gIg" id="ukj-jp-GJo"/>
                         <segue destination="3dN-5O-fKm" kind="show" identifier="registerUserView" id="OND-gN-796"/>
+                        <segue destination="f4a-xJ-9Zu" kind="show" identifier="taskView" id="iU8-R0-tir"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YRX-r9-qp5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -225,7 +225,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BkT-dN-8PB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1688" y="155"/>
+            <point key="canvasLocation" x="1647" y="-74"/>
         </scene>
         <!--Task Table View Controller-->
         <scene sceneID="YlE-Q6-O0o">
@@ -397,7 +397,6 @@
                                 </state>
                                 <connections>
                                     <action selector="signUp:" destination="3dN-5O-fKm" eventType="touchUpInside" id="fDr-i5-yKm"/>
-                                    <segue destination="f4a-xJ-9Zu" kind="show" identifier="taskViewFromRegister" id="AId-bE-edX"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zxh-e6-zDN">
@@ -461,6 +460,7 @@
                         <outlet property="passErrorMessage" destination="zxh-e6-zDN" id="eXD-gb-ExQ"/>
                         <outlet property="password" destination="wbZ-zN-JhX" id="Z7x-nS-NvG"/>
                         <outlet property="username" destination="bkR-5H-9l9" id="2cM-mL-XYg"/>
+                        <segue destination="f4a-xJ-9Zu" kind="show" identifier="taskViewFromRegister" id="6D4-fQ-YDL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IVS-Te-bc1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -472,6 +472,6 @@
         <image name="PetTrackerLogo.png" width="606" height="103"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="1eC-3l-Ixl"/>
+        <segue reference="6D4-fQ-YDL"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -35,6 +35,8 @@ class registerUserViewController: UIViewController {
             let alert = UIAlertController(title: "Empty Fields", message: "All fields must be fill out", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
+            
+            return
         }
         else{
             //validate for password and confirm password match
@@ -106,10 +108,12 @@ class registerUserViewController: UIViewController {
                             self.presentViewController(errorAlert, animated: true, completion: nil)
                         }
                     }
-                
-                    NSOperationQueue.mainQueue().addOperationWithBlock {
-                        self.performSegueWithIdentifier("taskViewFromRegister", sender: self)
-                    }
+                    
+                        dispatch_async(dispatch_get_main_queue()) {
+                            NSOperationQueue.mainQueue().addOperationWithBlock {
+                                self.performSegueWithIdentifier("taskViewFromRegister", sender: self)
+                            }
+                        }
                 
             } catch let error as NSError {
                 print(error.debugDescription)
@@ -122,7 +126,7 @@ class registerUserViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        print("preparing Segue")
+        print("preparing register Segue")
         
         if(segue.identifier == "taskViewFromRegister"){
             if let destination = segue.destinationViewController as? taskViewController {
