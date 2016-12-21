@@ -45,9 +45,12 @@ class petViewController: UIViewController, UITableViewDataSource, UITableViewDel
     }
     //creates a cell for each item in the array
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = self.petsTable.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
+//        let cell = self.petsTable.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
+        let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "cell")
         
-        cell.textLabel?.text = self.name[indexPath.row]
+        cell.textLabel?.text = name[indexPath.row]
+        cell.detailTextLabel?.text = items[indexPath.row]
+        
         
         //cell.name.text=name[indexPath.row]
         //cell.type.text=items[indexPath.row]
