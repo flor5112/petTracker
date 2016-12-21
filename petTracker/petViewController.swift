@@ -15,8 +15,10 @@ class petViewController: UIViewController, UITableViewDataSource, UITableViewDel
     
     //Reference to tableView
    
+  
     
-    @IBOutlet weak var petsTable: UITableView!
+    @IBOutlet var petsTable: UITableView!
+    
     var items=["Dog","Cat","Cow"]
     var name=["lola","Philly","Carlos"]
     
@@ -43,9 +45,12 @@ class petViewController: UIViewController, UITableViewDataSource, UITableViewDel
     }
     //creates a cell for each item in the array
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = self.petsTable.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! petTableCell
-        cell.name.text=name[indexPath.row]
-        cell.type.text=items[indexPath.row]
+        let cell = self.petsTable.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
+        
+        cell.textLabel?.text = self.name[indexPath.row]
+        
+        //cell.name.text=name[indexPath.row]
+        //cell.type.text=items[indexPath.row]
         return cell
     }
 
@@ -53,4 +58,34 @@ class petViewController: UIViewController, UITableViewDataSource, UITableViewDel
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         print("You tapped on cell #\(indexPath.row)")
     }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+    }
+    
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        
+      
+        // Edit Button
+        let editAction = UITableViewRowAction(style: .Normal, title: "Edit"){ (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
+            
+            let firstActivityItem=self.name[indexPath.row]
+            let activityViewController = UIActivityViewController(activityItems: [firstActivityItem], applicationActivities: nil)
+            self.presentViewController(activityViewController, animated: true, completion: nil)
+        }
+        //Delete Button
+        let deleteAction = UITableViewRowAction(style: .Normal, title: "Delete"){ (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
+            
+            let firstActivityItem=self.name[indexPath.row]
+            let activityViewController = UIActivityViewController(activityItems: [firstActivityItem], applicationActivities: nil)
+            self.presentViewController(activityViewController, animated: true, completion: nil)
+        }
+      
+        
+        editAction.backgroundColor=UIColor.blueColor()
+        deleteAction.backgroundColor=UIColor.redColor()
+        
+        return [deleteAction,editAction]
+    }
+    
 }
