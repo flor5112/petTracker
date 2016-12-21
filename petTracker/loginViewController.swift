@@ -85,10 +85,6 @@ class loginViewController: UIViewController {
     func continueToTaskView(success: String)
     {
         if (success == "true") {
-//            NSOperationQueue.mainQueue().addOperationWithBlock {
-//                self.performSegueWithIdentifier("taskView", sender: self)
-//                
-//            }
             
             dispatch_async(dispatch_get_main_queue()) {
                 NSOperationQueue.mainQueue().addOperationWithBlock {
@@ -107,11 +103,12 @@ class loginViewController: UIViewController {
         if(segue.identifier == "taskView")
         {
             print("preparing login Segue")
-            if let destination = segue.destinationViewController as? taskViewController {
-                destination.username = self.username.text!
-                print("destination userID \(userId)")
-                destination.userId = self.userId
-            }
+            
+            let DestViewController = segue.destinationViewController as! UINavigationController
+            let targetController = DestViewController.topViewController as! petViewController
+            targetController.username = self.username.text!
+            print("destination userID \(userId)")   
+            targetController.userId = self.userId
         }
         
         if(segue.identifier == "registerUserView") {

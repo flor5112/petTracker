@@ -13,9 +13,9 @@
 		55A2CF311DE36EF10024C82F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55A2CF301DE36EF10024C82F /* Assets.xcassets */; };
 		55A2CF341DE36EF10024C82F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55A2CF321DE36EF10024C82F /* LaunchScreen.storyboard */; };
 		55D283FF1DE653A700EF5B0A /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D283FE1DE653A700EF5B0A /* loginViewController.swift */; };
-		55D284011DE66EBF00EF5B0A /* taskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D284001DE66EBF00EF5B0A /* taskViewController.swift */; };
 		55D284031DE6973E00EF5B0A /* registerUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D284021DE6973E00EF5B0A /* registerUserViewController.swift */; };
-		55D284051DE93A0900EF5B0A /* taskTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D284041DE93A0900EF5B0A /* taskTableViewController.swift */; };
+		55D875F21E09DD4700F4AA0D /* petViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D875F11E09DD4700F4AA0D /* petViewController.swift */; };
+		55D875F61E0A0C7100F4AA0D /* petTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D875F51E0A0C7000F4AA0D /* petTableCell.swift */; };
 		634C366E1E08E174000BD50B /* addTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C366D1E08E174000BD50B /* addTaskViewController.swift */; };
 		6383412B1E05FB7000A382A4 /* PetTrackerLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 6383412A1E05FB7000A382A4 /* PetTrackerLogo.png */; };
 /* End PBXBuildFile section */
@@ -29,9 +29,9 @@
 		55A2CF331DE36EF10024C82F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		55A2CF351DE36EF10024C82F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55D283FE1DE653A700EF5B0A /* loginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loginViewController.swift; sourceTree = "<group>"; };
-		55D284001DE66EBF00EF5B0A /* taskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = taskViewController.swift; sourceTree = "<group>"; };
 		55D284021DE6973E00EF5B0A /* registerUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = registerUserViewController.swift; sourceTree = "<group>"; };
-		55D284041DE93A0900EF5B0A /* taskTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = taskTableViewController.swift; sourceTree = "<group>"; };
+		55D875F11E09DD4700F4AA0D /* petViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = petViewController.swift; sourceTree = "<group>"; };
+		55D875F51E0A0C7000F4AA0D /* petTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = petTableCell.swift; sourceTree = "<group>"; };
 		634C366D1E08E174000BD50B /* addTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addTaskViewController.swift; sourceTree = "<group>"; };
 		6383412A1E05FB7000A382A4 /* PetTrackerLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PetTrackerLogo.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -74,10 +74,10 @@
 				55A2CF321DE36EF10024C82F /* LaunchScreen.storyboard */,
 				55A2CF351DE36EF10024C82F /* Info.plist */,
 				55D283FE1DE653A700EF5B0A /* loginViewController.swift */,
-				55D284001DE66EBF00EF5B0A /* taskViewController.swift */,
 				55D284021DE6973E00EF5B0A /* registerUserViewController.swift */,
-				55D284041DE93A0900EF5B0A /* taskTableViewController.swift */,
 				634C366D1E08E174000BD50B /* addTaskViewController.swift */,
+				55D875F11E09DD4700F4AA0D /* petViewController.swift */,
+				55D875F51E0A0C7000F4AA0D /* petTableCell.swift */,
 			);
 			path = petTracker;
 			sourceTree = "<group>";
@@ -154,10 +154,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55D284051DE93A0900EF5B0A /* taskTableViewController.swift in Sources */,
 				55A2CF2C1DE36EF10024C82F /* addPetViewController.swift in Sources */,
 				55D284031DE6973E00EF5B0A /* registerUserViewController.swift in Sources */,
-				55D284011DE66EBF00EF5B0A /* taskViewController.swift in Sources */,
+				55D875F61E0A0C7100F4AA0D /* petTableCell.swift in Sources */,
+				55D875F21E09DD4700F4AA0D /* petViewController.swift in Sources */,
 				634C366E1E08E174000BD50B /* addTaskViewController.swift in Sources */,
 				55A2CF2A1DE36EF10024C82F /* AppDelegate.swift in Sources */,
 				55D283FF1DE653A700EF5B0A /* loginViewController.swift in Sources */,
