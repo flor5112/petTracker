@@ -30,8 +30,9 @@ class petViewController: UIViewController, UITableViewDataSource, UITableViewDel
         self.petsTable.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
         self.petsTable.dataSource=self
         self.petsTable.delegate=self
+        //getPets()
+        print("pets:\(self.pets)")
         getPets()
-        print(self.pets)
         
         // Do any additional setup after loading the view.
     }
@@ -97,17 +98,29 @@ class petViewController: UIViewController, UITableViewDataSource, UITableViewDel
         request.HTTPMethod = "POST"
         let postString = "user_id=" + userId
         request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
-         
         
-        do {
-            let json = try NSJSONSerialization.JSONObjectWithData(data!, options:NSJSONReadingOptions.MutableContainers)
-            print(json)
-            pets = json as! NSArray
-            print(pets)
-            petsTable.reloadData()
-        }catch let error as NSError {
-            print("Error: \(error.domain)")
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request){
+            (data, response, error) in
+            do {
+                guard let json = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSArray else {
+                    return
+                }
+                let mutableArray = NSMutableArray()
+                
+                for arr in json{
+                    mutableArray.addObject(arr)
+                }
+                var array = NSArray()
+                array = mutableArray.mutableCopy() as! NSArray
+                
+                print(json)
+                print(array)
+            } catch let error as NSError {
+                print(error.debugDescription)
             }
-        //end of getPets()
+        }
+       task.resume()
+      
    }
 }
+
