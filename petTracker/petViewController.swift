@@ -12,6 +12,7 @@ class petViewController: UIViewController, UITableViewDataSource, UITableViewDel
     
     var username: String = ""
     var userId: String = ""
+    var pets:NSArray = []
     
     //Reference to tableView
    
@@ -29,6 +30,8 @@ class petViewController: UIViewController, UITableViewDataSource, UITableViewDel
         self.petsTable.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
         self.petsTable.dataSource=self
         self.petsTable.delegate=self
+        getPets()
+        print(self.pets)
         
         // Do any additional setup after loading the view.
     }
@@ -45,15 +48,12 @@ class petViewController: UIViewController, UITableViewDataSource, UITableViewDel
     }
     //creates a cell for each item in the array
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//        let cell = self.petsTable.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
+    
         let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "cell")
         
         cell.textLabel?.text = name[indexPath.row]
         cell.detailTextLabel?.text = items[indexPath.row]
         
-        
-        //cell.name.text=name[indexPath.row]
-        //cell.type.text=items[indexPath.row]
         return cell
     }
 
@@ -84,11 +84,30 @@ class petViewController: UIViewController, UITableViewDataSource, UITableViewDel
             self.presentViewController(activityViewController, animated: true, completion: nil)
         }
       
-        
         editAction.backgroundColor=UIColor.blueColor()
         deleteAction.backgroundColor=UIColor.redColor()
         
         return [deleteAction,editAction]
     }
     
+    func getPets(){
+        
+        let petUrl = NSURL(string: "https://pettrackerapp.herokuapp.com/pet/getPetsForUser")
+        let request = NSMutableURLRequest(URL:petUrl!)
+        request.HTTPMethod = "POST"
+        let postString = "user_id=" + userId
+        request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
+         
+        
+        do {
+            let json = try NSJSONSerialization.JSONObjectWithData(data!, options:NSJSONReadingOptions.MutableContainers)
+            print(json)
+            pets = json as! NSArray
+            print(pets)
+            petsTable.reloadData()
+        }catch let error as NSError {
+            print("Error: \(error.domain)")
+            }
+        //end of getPets()
+   }
 }
