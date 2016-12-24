@@ -50,10 +50,7 @@ class addPetViewController: UIViewController {
         }
         
         task.resume()
-        print(postString)
-        
-        
-        
+        print(postString) 
     }
     override func viewDidLoad() {
         super.viewDidLoad()

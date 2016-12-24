@@ -16,7 +16,6 @@ class petViewController: UIViewController, UITableViewDataSource, UITableViewDel
     
     //Reference to tableView
    
-  
     
     @IBOutlet var petsTable: UITableView!
     
@@ -120,7 +119,16 @@ class petViewController: UIViewController, UITableViewDataSource, UITableViewDel
             }
         }
        task.resume()
-      
    }
+    
+    @IBAction func logout(sender: UIBarButtonItem) {
+        print("Logging Out")
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Login")
+            self.presentViewController(viewController, animated: true, completion: nil)
+        })
+    }
+    
+    
 }
 
