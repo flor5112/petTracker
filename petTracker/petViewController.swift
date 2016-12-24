@@ -8,6 +8,10 @@
 
 import UIKit
 
+struct defaultsKeys {
+    static let userID = "userID"
+}
+
 class petViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var username: String = ""
@@ -15,10 +19,8 @@ class petViewController: UIViewController, UITableViewDataSource, UITableViewDel
     var pets:NSArray = []
     
     //Reference to tableView
-   
     
     @IBOutlet var petsTable: UITableView!
-    
     var items=["Dog","Cat","Cow"]
     var name=["lola","Philly","Carlos"]
     
@@ -26,13 +28,17 @@ class petViewController: UIViewController, UITableViewDataSource, UITableViewDel
         print("user ID: \(userId)")
         print("username: \(username)")
         
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setValue(userId, forKey: defaultsKeys.userID)
+        defaults.synchronize()
+        
         self.petsTable.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
         self.petsTable.dataSource=self
         self.petsTable.delegate=self
         //getPets()
         print("pets:\(self.pets)")
         getPets()
-        
+
         // Do any additional setup after loading the view.
     }
     
@@ -123,11 +129,16 @@ class petViewController: UIViewController, UITableViewDataSource, UITableViewDel
     
     @IBAction func logout(sender: UIBarButtonItem) {
         print("Logging Out")
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setValue("", forKey: defaultsKeys.userID)
+        defaults.synchronize()
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Login")
             self.presentViewController(viewController, animated: true, completion: nil)
         })
     }
+    
+    
     
     
 }

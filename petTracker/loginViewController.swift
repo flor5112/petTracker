@@ -17,10 +17,10 @@ class loginViewController: UIViewController {
         NSOperationQueue.mainQueue().addOperationWithBlock {
             self.performSegueWithIdentifier("registerUserView", sender: self)
         }
+        
     }
 
     @IBAction func login(segue: UIStoryboardSegue) {
-        let activityView = self.startActivityIndicatorView()
         var isValidLogin:String = ""
         
         if(username.text?.isEmpty ?? true || password.text?.isEmpty ?? true){
@@ -29,6 +29,7 @@ class loginViewController: UIViewController {
             self.presentViewController(alert, animated: true, completion: nil)
         }
         else{
+            let activityView = self.startActivityIndicatorView()
             let petUrl = NSURL(string: "https://pettrackerapp.herokuapp.com/user/login")
             
             let request = NSMutableURLRequest(URL:petUrl!)

@@ -27,12 +27,17 @@ class addPetViewController: UIViewController {
         dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
         let petDOBValue = dateFormatter.stringFromDate(petDOBDate)
         
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let userIdValue = defaults.stringForKey(defaultsKeys.userID)
+        
         //connect to server
         let petUrl = NSURL(string: "https://pettrackerapp.herokuapp.com/pet/create")
         let request = NSMutableURLRequest(URL:petUrl!)
         request.HTTPMethod = "POST"
         let postString = "petName=" + petNameValue! +
                          "&type=" + petTypeValue! +
+                         "&user_id=" + userIdValue! +
                          "&dob=" + petDOBValue
         //start session/request
         request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
@@ -45,13 +50,12 @@ class addPetViewController: UIViewController {
                 return
             }
             print("******Response =\(response)")
-            
-        
         }
         
         task.resume()
         print(postString) 
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.

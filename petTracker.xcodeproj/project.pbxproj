@@ -66,7 +66,6 @@
 			children = (
 				6383412A1E05FB7000A382A4 /* PetTrackerLogo.png */,
 				55A2CF291DE36EF10024C82F /* AppDelegate.swift */,
-				55A2CF2B1DE36EF10024C82F /* addPetViewController.swift */,
 				55A2CF2D1DE36EF10024C82F /* Main.storyboard */,
 				55A2CF301DE36EF10024C82F /* Assets.xcassets */,
 				55A2CF321DE36EF10024C82F /* LaunchScreen.storyboard */,
@@ -74,6 +73,7 @@
 				55D283FE1DE653A700EF5B0A /* loginViewController.swift */,
 				55D284021DE6973E00EF5B0A /* registerUserViewController.swift */,
 				634C366D1E08E174000BD50B /* addTaskViewController.swift */,
+				55A2CF2B1DE36EF10024C82F /* addPetViewController.swift */,
 				55D875F11E09DD4700F4AA0D /* petViewController.swift */,
 			);
 			path = petTracker;

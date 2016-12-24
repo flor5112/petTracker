@@ -153,7 +153,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3981" y="-66"/>
+            <point key="canvasLocation" x="4793" y="-66"/>
         </scene>
         <!--Add Task View Controller-->
         <scene sceneID="kMW-pF-LPv">
@@ -306,7 +306,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bvS-hh-7NH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3255" y="647"/>
+            <point key="canvasLocation" x="4067" y="647"/>
         </scene>
         <!--Login-->
         <scene sceneID="g6k-Z8-i23">
@@ -438,7 +438,7 @@
                     <connections>
                         <outlet property="password" destination="MIH-tF-XbQ" id="myc-tg-IIc"/>
                         <outlet property="username" destination="z47-hl-gIg" id="ukj-jp-GJo"/>
-                        <segue destination="3dN-5O-fKm" kind="show" identifier="registerUserView" id="OND-gN-796"/>
+                        <segue destination="2eh-Fn-vRE" kind="show" identifier="registerUserView" id="OND-gN-796"/>
                         <segue destination="M1i-fI-h12" kind="show" identifier="taskView" id="iU8-R0-tir"/>
                     </connections>
                 </viewController>
@@ -498,17 +498,18 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addButton" destination="gOp-6E-PPc" id="r2U-k9-Kxa"/>
                         <outlet property="petsTable" destination="Tli-b7-2ZB" id="KCH-cE-k6r"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BkT-dN-8PB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3255" y="-60"/>
+            <point key="canvasLocation" x="4067" y="-60"/>
         </scene>
-        <!--Register User View Controller-->
+        <!--Register-->
         <scene sceneID="24j-n9-ENx">
             <objects>
-                <viewController id="3dN-5O-fKm" customClass="registerUserViewController" customModule="petTracker" sceneMemberID="viewController">
+                <viewController title="Register" id="3dN-5O-fKm" customClass="registerUserViewController" customModule="petTracker" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="owg-hP-Wtz"/>
                         <viewControllerLayoutGuide type="bottom" id="vbK-dN-cFn"/>
@@ -700,6 +701,13 @@
                             <constraint firstItem="wbZ-zN-JhX" firstAttribute="top" secondItem="bkR-5H-9l9" secondAttribute="bottom" constant="39" id="zWw-9K-i29"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Register" id="TJ2-9R-noj">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="rAq-Ye-LRE">
+                            <connections>
+                                <segue destination="I99-fg-7iy" kind="unwind" unwindAction="login:" id="gV0-9P-5kH"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="confirmEmail" destination="xRl-tj-HVY" id="ytS-hA-cop"/>
                         <outlet property="confirmPassword" destination="ETl-xm-Ynb" id="wQ9-jb-CTX"/>
@@ -712,8 +720,9 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IVS-Te-bc1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="I99-fg-7iy" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1723" y="393"/>
+            <point key="canvasLocation" x="2535" y="393"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="MaD-39-peQ">
@@ -731,7 +740,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zM0-Mo-HZ3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2459" y="-74"/>
+            <point key="canvasLocation" x="3271" y="-74"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="4sa-wi-h5U">
@@ -748,8 +757,27 @@
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kVf-O1-IdT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationItem id="icn-3s-aqC"/>
             </objects>
             <point key="canvasLocation" x="911" y="-357"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="8ly-he-ROj">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2eh-Fn-vRE" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="i4x-Iq-Mnk">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="3dN-5O-fKm" kind="relationship" relationship="rootViewController" id="G1o-aX-HYM"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="drb-US-lRv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1723" y="393"/>
         </scene>
     </scenes>
     <resources>
