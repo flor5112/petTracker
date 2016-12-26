@@ -19,21 +19,21 @@ class Pet {
 }
 
 class petViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+
     
     var username: String = ""
     var userId: String = ""
-//    var pets:NSArray = []
     var pets = [Pet]()
     
     //Reference to tableView
     
     @IBOutlet var petsTable: UITableView!
-//    var items=["Dog","Cat","Cow"]
-//    var name=["lola","Philly","Carlos"]
     
     override func viewDidLoad() {
         print("user ID: \(userId)")
         print("username: \(username)")
+        
+        super.viewDidLoad()
         
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setValue(userId, forKey: defaultsKeys.userID)
@@ -42,10 +42,12 @@ class petViewController: UIViewController, UITableViewDataSource, UITableViewDel
         self.petsTable.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
         self.petsTable.dataSource=self
         self.petsTable.delegate=self
-        //getPets()
-        print("pets:\(self.pets)")
+        
         getPets()
-
+        refreshControl = UIRefreshControl()
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(petViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        petsTable.addSubview(refreshControl) // not required when using UITableViewController
         // Do any additional setup after loading the view.
     }
     
@@ -124,26 +126,17 @@ class petViewController: UIViewController, UITableViewDataSource, UITableViewDel
                 guard let json = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSArray else {
                     return
                 }
-//                let mutableArray = NSMutableArray()
-                
                 for arr in json{
-//                    mutableArray.addObject(arr)
                     let pet = Pet()
                     pet.petId = arr["_id"] as! String
                     pet.petName = arr["petName"] as! String
                     pet.type = arr["type"] as! String
                     self.pets.append(pet)
-                    
-//                    print(arr["petName"]!!.description)
                 }
                 dispatch_async(dispatch_get_main_queue()) {
                     self.petsTable.reloadData()
                 }
-//                var array = NSArray()
-//                array = mutableArray.mutableCopy() as! NSArray
-                
                 print(json)
-//                print(array)
             } catch let error as NSError {
                 print(error.debugDescription)
             }
@@ -162,8 +155,19 @@ class petViewController: UIViewController, UITableViewDataSource, UITableViewDel
         })
     }
     
+    var refreshControl: UIRefreshControl!
     
+    func refresh(sender: AnyObject) {
+        if pets.count != 0{
+            pets.removeAll()
+        }
+        getPets()
+        refreshControl.endRefreshing()
+    }
     
-    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        refresh("")
+    }
 }
 
