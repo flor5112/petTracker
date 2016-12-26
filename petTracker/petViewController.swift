@@ -12,17 +12,24 @@ struct defaultsKeys {
     static let userID = "userID"
 }
 
+class Pet {
+    var petId = ""
+    var petName = ""
+    var type = ""
+}
+
 class petViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var username: String = ""
     var userId: String = ""
-    var pets:NSArray = []
+//    var pets:NSArray = []
+    var pets = [Pet]()
     
     //Reference to tableView
     
     @IBOutlet var petsTable: UITableView!
-    var items=["Dog","Cat","Cow"]
-    var name=["lola","Philly","Carlos"]
+//    var items=["Dog","Cat","Cow"]
+//    var name=["lola","Philly","Carlos"]
     
     override func viewDidLoad() {
         print("user ID: \(userId)")
@@ -42,6 +49,11 @@ class petViewController: UIViewController, UITableViewDataSource, UITableViewDel
         // Do any additional setup after loading the view.
     }
     
+    override func viewDidAppear(animated: Bool) {
+        print("Reloading")
+        self.petsTable.reloadData()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -50,15 +62,17 @@ class petViewController: UIViewController, UITableViewDataSource, UITableViewDel
     //Returns the number of rows in the needed for the table 
     //in other words will return the number of pets they have
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
+        return pets.count
     }
     //creates a cell for each item in the array
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     
         let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "cell")
         
-        cell.textLabel?.text = name[indexPath.row]
-        cell.detailTextLabel?.text = items[indexPath.row]
+        let pet = pets[indexPath.row]
+        
+        cell.textLabel?.text = pet.petName
+        cell.detailTextLabel?.text = pet.type
         
         return cell
     }
@@ -78,14 +92,14 @@ class petViewController: UIViewController, UITableViewDataSource, UITableViewDel
         // Edit Button
         let editAction = UITableViewRowAction(style: .Normal, title: "Edit"){ (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
             
-            let firstActivityItem=self.name[indexPath.row]
+            let firstActivityItem=self.pets[indexPath.row]
             let activityViewController = UIActivityViewController(activityItems: [firstActivityItem], applicationActivities: nil)
             self.presentViewController(activityViewController, animated: true, completion: nil)
         }
         //Delete Button
         let deleteAction = UITableViewRowAction(style: .Normal, title: "Delete"){ (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
             
-            let firstActivityItem=self.name[indexPath.row]
+            let firstActivityItem=self.pets[indexPath.row]
             let activityViewController = UIActivityViewController(activityItems: [firstActivityItem], applicationActivities: nil)
             self.presentViewController(activityViewController, animated: true, completion: nil)
         }
@@ -110,16 +124,26 @@ class petViewController: UIViewController, UITableViewDataSource, UITableViewDel
                 guard let json = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSArray else {
                     return
                 }
-                let mutableArray = NSMutableArray()
+//                let mutableArray = NSMutableArray()
                 
                 for arr in json{
-                    mutableArray.addObject(arr)
+//                    mutableArray.addObject(arr)
+                    let pet = Pet()
+                    pet.petId = arr["_id"] as! String
+                    pet.petName = arr["petName"] as! String
+                    pet.type = arr["type"] as! String
+                    self.pets.append(pet)
+                    
+//                    print(arr["petName"]!!.description)
                 }
-                var array = NSArray()
-                array = mutableArray.mutableCopy() as! NSArray
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.petsTable.reloadData()
+                }
+//                var array = NSArray()
+//                array = mutableArray.mutableCopy() as! NSArray
                 
                 print(json)
-                print(array)
+//                print(array)
             } catch let error as NSError {
                 print(error.debugDescription)
             }
