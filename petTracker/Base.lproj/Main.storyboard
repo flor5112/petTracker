@@ -498,7 +498,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="addButton" destination="gOp-6E-PPc" id="r2U-k9-Kxa"/>
                         <outlet property="petsTable" destination="Tli-b7-2ZB" id="KCH-cE-k6r"/>
                     </connections>
                 </viewController>
@@ -784,6 +783,6 @@
         <image name="PetTrackerLogo.png" width="606" height="103"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="6D4-fQ-YDL"/>
+        <segue reference="iU8-R0-tir"/>
     </inferredMetricsTieBreakers>
 </document>
