@@ -27,33 +27,41 @@ class addPetViewController: UIViewController {
         dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
         let petDOBValue = dateFormatter.stringFromDate(petDOBDate)
         
-        
-        let defaults = NSUserDefaults.standardUserDefaults()
-        let userIdValue = defaults.stringForKey(defaultsKeys.userID)
-        
-        //connect to server
-        let petUrl = NSURL(string: "https://pettrackerapp.herokuapp.com/pet/create")
-        let request = NSMutableURLRequest(URL:petUrl!)
-        request.HTTPMethod = "POST"
-        let postString = "petName=" + petNameValue! +
-                         "&type=" + petTypeValue! +
-                         "&user_id=" + userIdValue! +
-                         "&dob=" + petDOBValue
-        //start session/request
-        request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
-        
-        let task = NSURLSession.sharedSession().dataTaskWithRequest(request){
-            data, response, error in
-            
-            if error != nil {
-                print("error\(error)")
-                return
-            }
-            print("******Response =\(response)")
+        if(petNameValue!.isEmpty ?? true || petTypeValue!.isEmpty ?? true){
+            let alert = UIAlertController(title: "Empty Fields", message: "Pet name and type must be entered", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
         }
-        
-        task.resume()
-        print(postString) 
+        else{
+            let defaults = NSUserDefaults.standardUserDefaults()
+            let userIdValue = defaults.stringForKey(defaultsKeys.userID)
+            
+            //connect to server
+            let petUrl = NSURL(string: "https://pettrackerapp.herokuapp.com/pet/create")
+            let request = NSMutableURLRequest(URL:petUrl!)
+            request.HTTPMethod = "POST"
+            let postString = "petName=" + petNameValue! +
+                             "&type=" + petTypeValue! +
+                             "&user_id=" + userIdValue! +
+                             "&dob=" + petDOBValue
+            //start session/request
+            request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
+            
+            let task = NSURLSession.sharedSession().dataTaskWithRequest(request){
+                data, response, error in
+                
+                if error != nil {
+                    print("error\(error)")
+                    return
+                }
+                print("******Response =\(response)")
+            }
+            
+            task.resume()
+            let alert = UIAlertController(title: "Pet Added", message: "\(petNameValue!) was added", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
     }
     
     override func viewDidLoad() {
