@@ -483,7 +483,7 @@
                             <constraint firstItem="z47-hl-gIg" firstAttribute="leading" secondItem="MIH-tF-XbQ" secondAttribute="trailing" constant="-305" id="yU4-fz-e8q"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="eSh-pZ-wXA"/>
+                    <navigationItem key="navigationItem" title="Login" id="eSh-pZ-wXA"/>
                     <connections>
                         <outlet property="password" destination="MIH-tF-XbQ" id="myc-tg-IIc"/>
                         <outlet property="username" destination="z47-hl-gIg" id="ukj-jp-GJo"/>
