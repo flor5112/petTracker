@@ -18,9 +18,9 @@ class taskViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     var tasks = [Task]()
     
-    var tasksTitle = ["helo","things"]
-    
-    var descriptions = ["thing1", "thing2"]
+//    var tasksTitle = ["helo","things"]
+//    
+//    var descriptions = ["thing1", "thing2"]
     
     @IBOutlet weak var taskTable: UITableView!
     override func viewDidLoad() {
@@ -41,17 +41,17 @@ class taskViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // Dispose of any resources that can be recreated.
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tasksTitle.count
+        return tasks.count
     }
     //creates a cell for each item in the array
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "cell")
         
-        //let task = tasks[indexPath.row]
+        let task = tasks[indexPath.row]
         
-        cell.textLabel?.text = tasksTitle[indexPath.row]  //task.taskTitle
-        cell.detailTextLabel?.text = descriptions[indexPath.row]   //task.taskDescription
+        cell.textLabel?.text = task.taskTitle
+        cell.detailTextLabel?.text = task.taskDescription
         
         return cell
     }
@@ -59,7 +59,7 @@ class taskViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         print("You tapped on cell #\(indexPath.row)")
         
-        let actionSheetController: UIAlertController = UIAlertController(title: "Task Description", message: descriptions[indexPath.row], preferredStyle: .ActionSheet)
+        let actionSheetController: UIAlertController = UIAlertController(title: "Task Description", message: tasks[indexPath.row].taskDescription, preferredStyle: .ActionSheet)
         
         //Create and add the Cancel action
         let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel) { action -> Void in
