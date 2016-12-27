@@ -31,7 +31,7 @@ class taskViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.taskTable.dataSource=self
         self.taskTable.delegate=self
         
-        //getTasks()
+        getTasks()
         
         // Do any additional setup after loading the view.
     }
@@ -105,7 +105,7 @@ class taskViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let defaults = NSUserDefaults.standardUserDefaults()
         let petId = defaults.stringForKey(defaultsKeys.petID)
         
-        let petUrl = NSURL(string: "https://pettrackerapp.herokuapp.com/pet/getTasksForPet")
+        let petUrl = NSURL(string: "https://pettrackerapp.herokuapp.com/task/getTasksForPet")
         let request = NSMutableURLRequest(URL:petUrl!)
         request.HTTPMethod = "POST"
         let postString = "pet_id=" + petId!
@@ -124,7 +124,7 @@ class taskViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 for arr in json{
                     let task = Task()
                     task.taskTitle = arr["taskTitle"] as! String
-                    task.taskDescription = arr["taskDescription"] as! String
+                    task.taskDescription = arr["description"] as! String
                     self.tasks.append(task)
                 }
                 

@@ -114,8 +114,6 @@ class petViewController: UIViewController, UITableViewDataSource, UITableViewDel
         let deleteAction = UITableViewRowAction(style: .Normal, title: "Delete"){ (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
             
             let itemToDelete = self.pets[indexPath.row]
-//            let activityViewController = UIActivityViewController(activityItems: [firstActivityItem], applicationActivities: nil)
-//            self.presentViewController(activityViewController, animated: true, completion: nil)
             
             print(itemToDelete.petId)
             let petId = itemToDelete.petId
@@ -130,12 +128,6 @@ class petViewController: UIViewController, UITableViewDataSource, UITableViewDel
             
             let task = session.dataTaskWithRequest(request){
                 (data, response, error) in
-//                do {
-//                    guard let json = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSArray else {
-//                        return
-//                    }
-                
-//                    print(json[0]["message"])
                     
                     print("Inside request")
                     
@@ -144,16 +136,10 @@ class petViewController: UIViewController, UITableViewDataSource, UITableViewDel
                     dispatch_async(dispatch_get_main_queue()) {
                         self.petsTable.reloadData()
                     }
-                    
-                    
-//                    print(json)
-//                } catch let error as NSError {
-//                    print(error.debugDescription)
-//                }
+                
             }
+            
             task.resume()
-            
-            
             
         }
       

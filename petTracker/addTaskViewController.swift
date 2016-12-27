@@ -35,7 +35,7 @@ class addTaskViewController: UIViewController {
         let request = NSMutableURLRequest(URL:petUrl!)
         request.HTTPMethod = "POST"
         let postString = "taskTitle=" + titleValue! +
-            "&pet_id=" + petId!
+            "&pet_id=" + petId! +
             "&description=" + descriptionValue! +
             "&reminderTime=" + reminderTimeValue
         
