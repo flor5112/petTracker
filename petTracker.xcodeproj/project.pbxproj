@@ -15,6 +15,7 @@
 		55D283FF1DE653A700EF5B0A /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D283FE1DE653A700EF5B0A /* loginViewController.swift */; };
 		55D284031DE6973E00EF5B0A /* registerUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D284021DE6973E00EF5B0A /* registerUserViewController.swift */; };
 		55D875F21E09DD4700F4AA0D /* petViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D875F11E09DD4700F4AA0D /* petViewController.swift */; };
+		55E917771E11EF120077F3AF /* taskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E917761E11EF120077F3AF /* taskViewController.swift */; };
 		634C366E1E08E174000BD50B /* addTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634C366D1E08E174000BD50B /* addTaskViewController.swift */; };
 		6383412B1E05FB7000A382A4 /* PetTrackerLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 6383412A1E05FB7000A382A4 /* PetTrackerLogo.png */; };
 /* End PBXBuildFile section */
@@ -30,6 +31,7 @@
 		55D283FE1DE653A700EF5B0A /* loginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loginViewController.swift; sourceTree = "<group>"; };
 		55D284021DE6973E00EF5B0A /* registerUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = registerUserViewController.swift; sourceTree = "<group>"; };
 		55D875F11E09DD4700F4AA0D /* petViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = petViewController.swift; sourceTree = "<group>"; };
+		55E917761E11EF120077F3AF /* taskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = taskViewController.swift; sourceTree = "<group>"; };
 		634C366D1E08E174000BD50B /* addTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addTaskViewController.swift; sourceTree = "<group>"; };
 		6383412A1E05FB7000A382A4 /* PetTrackerLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PetTrackerLogo.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -75,6 +77,7 @@
 				634C366D1E08E174000BD50B /* addTaskViewController.swift */,
 				55A2CF2B1DE36EF10024C82F /* addPetViewController.swift */,
 				55D875F11E09DD4700F4AA0D /* petViewController.swift */,
+				55E917761E11EF120077F3AF /* taskViewController.swift */,
 			);
 			path = petTracker;
 			sourceTree = "<group>";
@@ -154,6 +157,7 @@
 				55A2CF2C1DE36EF10024C82F /* addPetViewController.swift in Sources */,
 				55D284031DE6973E00EF5B0A /* registerUserViewController.swift in Sources */,
 				55D875F21E09DD4700F4AA0D /* petViewController.swift in Sources */,
+				55E917771E11EF120077F3AF /* taskViewController.swift in Sources */,
 				634C366E1E08E174000BD50B /* addTaskViewController.swift in Sources */,
 				55A2CF2A1DE36EF10024C82F /* AppDelegate.swift in Sources */,
 				55D283FF1DE653A700EF5B0A /* loginViewController.swift in Sources */,
