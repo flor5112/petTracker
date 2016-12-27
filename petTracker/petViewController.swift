@@ -74,7 +74,7 @@ class petViewController: UIViewController, UITableViewDataSource, UITableViewDel
         return cell
     }
     
-    func tableView(_ tableView:UITableView, canEditRowAt indexPath: NSIndexPath) -> Bool {
+    func tableView(tableView:UITableView, canEditRowAt indexPath: NSIndexPath) -> Bool {
         return true
     }
 
@@ -86,6 +86,8 @@ class petViewController: UIViewController, UITableViewDataSource, UITableViewDel
         defaults.setValue(pet.petId,forKey: defaultsKeys.petID)
         defaults.setValue(pet.petName, forKey: defaultsKeys.petName)
         defaults.synchronize()
+        
+        self.performSegueWithIdentifier("selectedPet", sender: self)
         
         print("You tapped on cell #\(indexPath.row)")
         print("Pet name \(pet.petName)")

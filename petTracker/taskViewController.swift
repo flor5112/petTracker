@@ -87,12 +87,12 @@ class taskViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func getTasks()
     {
         let defaults = NSUserDefaults.standardUserDefaults()
-        let petID = defaults.stringForKey(defaultsKeys.petID)
+        let petId = defaults.stringForKey(defaultsKeys.petID)
         
         let petUrl = NSURL(string: "https://pettrackerapp.herokuapp.com/pet/getTaskForPet")
         let request = NSMutableURLRequest(URL:petUrl!)
         request.HTTPMethod = "POST"
-        let postString = "pet_id=" + petID
+        let postString = "pet_id=" + petId!
         request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
         
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request){
