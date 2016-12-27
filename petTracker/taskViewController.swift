@@ -18,6 +18,10 @@ class taskViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     var tasks = [Task]()
     
+    var tasksTitle = ["helo","things"]
+    
+    var descriptions = ["thing1", "thing2"]
+    
     @IBOutlet weak var taskTable: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +31,8 @@ class taskViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.taskTable.dataSource=self
         self.taskTable.delegate=self
         
+        //getTasks()
+        
         // Do any additional setup after loading the view.
     }
 
@@ -35,38 +41,46 @@ class taskViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // Dispose of any resources that can be recreated.
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tasks.count
+        return tasksTitle.count
     }
     //creates a cell for each item in the array
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "cell")
         
-        let task = tasks[indexPath.row]
+        //let task = tasks[indexPath.row]
         
-        cell.textLabel?.text = task.taskTitle
-        cell.detailTextLabel?.text = task.taskDescription
+        cell.textLabel?.text = tasksTitle[indexPath.row]  //task.taskTitle
+        cell.detailTextLabel?.text = descriptions[indexPath.row]   //task.taskDescription
         
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         print("You tapped on cell #\(indexPath.row)")
-    }
-    
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         
+        let actionSheetController: UIAlertController = UIAlertController(title: "Task Description", message: descriptions[indexPath.row], preferredStyle: .ActionSheet)
+        
+        //Create and add the Cancel action
+        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel) { action -> Void in
+            //Just dismiss the action sheet
+        }
+        actionSheetController.addAction(cancelAction)
+        //Present the AlertController
+        self.presentViewController(actionSheetController, animated: true, completion: nil)
     }
     
+    
+    //Two Edit and delete action buttons are added to each cell
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         
         
         // Edit Button
         let editAction = UITableViewRowAction(style: .Normal, title: "Edit"){ (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
             
-            let firstActivityItem=self.tasks[indexPath.row]
-            let activityViewController = UIActivityViewController(activityItems: [firstActivityItem], applicationActivities: nil)
-            self.presentViewController(activityViewController, animated: true, completion: nil)
+//            let firstActivityItem=self.tasks[indexPath.row]
+//            let activityViewController = UIActivityViewController(activityItems: [firstActivityItem], applicationActivities: nil)
+//            self.presentViewController(activityViewController, animated: true, completion: nil)
         }
         
         //Delete Button
@@ -84,23 +98,29 @@ class taskViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return [deleteAction,editAction]
     }
     
+    
+    //function to retrivet the tasks for the pet selected
     func getTasks()
     {
         let defaults = NSUserDefaults.standardUserDefaults()
         let petId = defaults.stringForKey(defaultsKeys.petID)
         
-        let petUrl = NSURL(string: "https://pettrackerapp.herokuapp.com/pet/getTaskForPet")
+        let petUrl = NSURL(string: "https://pettrackerapp.herokuapp.com/pet/getTasksForPet")
         let request = NSMutableURLRequest(URL:petUrl!)
         request.HTTPMethod = "POST"
         let postString = "pet_id=" + petId!
         request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
+         print("petID:\(postString)")
         
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request){
             (data, response, error) in
             do {
+                
                 guard let json = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSArray else {
                     return
                 }
+               
+                
                 for arr in json{
                     let task = Task()
                     task.taskTitle = arr["taskTitle"] as! String
@@ -119,14 +139,13 @@ class taskViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
         task.resume()
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    //reloads table when you delete a cell
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+            taskTable.reloadData()
+        }
     }
-    */
+ 
 
 }

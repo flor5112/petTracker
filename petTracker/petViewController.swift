@@ -160,7 +160,7 @@ class petViewController: UIViewController, UITableViewDataSource, UITableViewDel
         editAction.backgroundColor=UIColor.blueColor()
         deleteAction.backgroundColor=UIColor.redColor()
         
-        return [deleteAction,editAction]
+        return [deleteAction]
     }
     
     func getPets(){
