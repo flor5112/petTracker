@@ -20,6 +20,8 @@ class addTaskViewController: UIViewController {
         let titleValue = taskTitle.text
         let descriptionValue = taskDescription.text
         let reminderTimeDate = reminderTime.date
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let petId = defaults.stringForKey(defaultsKeys.petID)
         
         
         let dateFormatter = NSDateFormatter()
@@ -33,8 +35,10 @@ class addTaskViewController: UIViewController {
         let request = NSMutableURLRequest(URL:petUrl!)
         request.HTTPMethod = "POST"
         let postString = "taskTitle=" + titleValue! +
+            "&pet_id=" + petId!
             "&description=" + descriptionValue! +
             "&reminderTime=" + reminderTimeValue
+        
         //start session/request
         request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
         
