@@ -147,5 +147,16 @@ class taskViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
  
+    func refresh(sender: AnyObject) {
+        if tasks.count != 0{
+            tasks.removeAll()
+        }
+        getTasks()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        refresh("")
+    }
 
 }
