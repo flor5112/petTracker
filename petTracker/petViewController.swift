@@ -10,6 +10,8 @@ import UIKit
 
 struct defaultsKeys {
     static let userID = "userID"
+    static let petID = "petID"
+    static let petName = "petName"
 }
 
 class Pet {
@@ -42,13 +44,6 @@ class petViewController: UIViewController, UITableViewDataSource, UITableViewDel
         self.petsTable.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
         self.petsTable.dataSource=self
         self.petsTable.delegate=self
-        
-        getPets()
-        refreshControl = UIRefreshControl()
-        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        refreshControl.addTarget(self, action: #selector(petViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
-        petsTable.addSubview(refreshControl) // not required when using UITableViewController
-        // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -81,7 +76,16 @@ class petViewController: UIViewController, UITableViewDataSource, UITableViewDel
 
     //something happens when you click on an specific cell
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let pet = pets[indexPath.row]
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setValue(pet.petId,forKey: defaultsKeys.petID)
+        defaults.setValue(pet.petName, forKey: defaultsKeys.petName)
+        defaults.synchronize()
+        
         print("You tapped on cell #\(indexPath.row)")
+        print("Pet name \(pet.petName)")
+        print("pet id \(pet.petId)")
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -148,6 +152,8 @@ class petViewController: UIViewController, UITableViewDataSource, UITableViewDel
         print("Logging Out")
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setValue("", forKey: defaultsKeys.userID)
+        defaults.setValue("", forKey: defaultsKeys.petID)
+        defaults.setValue("", forKey: defaultsKeys.petName)
         defaults.synchronize()
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("Login")
@@ -155,14 +161,11 @@ class petViewController: UIViewController, UITableViewDataSource, UITableViewDel
         })
     }
     
-    var refreshControl: UIRefreshControl!
-    
     func refresh(sender: AnyObject) {
         if pets.count != 0{
             pets.removeAll()
         }
         getPets()
-        refreshControl.endRefreshing()
     }
     
     override func viewWillAppear(animated: Bool) {

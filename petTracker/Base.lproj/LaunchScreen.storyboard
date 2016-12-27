@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -16,7 +17,42 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PetTrackerLogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="ITs-Lk-voy">
+                                <rect key="frame" x="125" y="234" width="362" height="65"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="63" id="1PZ-S0-t0C"/>
+                                    <constraint firstAttribute="width" constant="362" id="7sH-u7-eRQ"/>
+                                    <constraint firstAttribute="height" constant="65" id="tls-Zb-fkc"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="1PZ-S0-t0C"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ITs-Lk-voy" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="6Ta-bO-6oM"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ITs-Lk-voy" secondAttribute="trailing" constant="104" id="IbH-9j-Waz"/>
+                            <constraint firstItem="ITs-Lk-voy" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="216" id="LsL-UO-HcJ"/>
+                            <constraint firstItem="ITs-Lk-voy" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" constant="6" id="WZg-if-exc"/>
+                            <constraint firstItem="ITs-Lk-voy" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="105" id="X2P-Zm-PUM"/>
+                            <constraint firstItem="ITs-Lk-voy" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Xga-R0-d0x"/>
+                            <constraint firstItem="ITs-Lk-voy" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="fFx-dK-xGc"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="ITs-Lk-voy" secondAttribute="bottom" constant="301" id="thi-qh-ZwV"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="6Ta-bO-6oM"/>
+                                <exclude reference="IbH-9j-Waz"/>
+                                <exclude reference="LsL-UO-HcJ"/>
+                                <exclude reference="X2P-Zm-PUM"/>
+                                <exclude reference="Xga-R0-d0x"/>
+                                <exclude reference="fFx-dK-xGc"/>
+                            </mask>
+                        </variation>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -24,4 +60,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="PetTrackerLogo.png" width="606" height="103"/>
+    </resources>
 </document>
