@@ -78,6 +78,10 @@ class petViewController: UIViewController, UITableViewDataSource, UITableViewDel
         
         return cell
     }
+    
+    func tableView(_ tableView:UITableView, canEditRowAt indexPath: NSIndexPath) -> Bool {
+        return true
+    }
 
     //something happens when you click on an specific cell
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -85,7 +89,9 @@ class petViewController: UIViewController, UITableViewDataSource, UITableViewDel
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+            petsTable.reloadData()
+        }
     }
     
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
@@ -101,9 +107,48 @@ class petViewController: UIViewController, UITableViewDataSource, UITableViewDel
         //Delete Button
         let deleteAction = UITableViewRowAction(style: .Normal, title: "Delete"){ (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
             
-            let firstActivityItem=self.pets[indexPath.row]
-            let activityViewController = UIActivityViewController(activityItems: [firstActivityItem], applicationActivities: nil)
-            self.presentViewController(activityViewController, animated: true, completion: nil)
+            let itemToDelete = self.pets[indexPath.row]
+//            let activityViewController = UIActivityViewController(activityItems: [firstActivityItem], applicationActivities: nil)
+//            self.presentViewController(activityViewController, animated: true, completion: nil)
+            
+            print(itemToDelete.petId)
+            let petId = itemToDelete.petId
+            
+            let petUrl = NSURL(string: "https://pettrackerapp.herokuapp.com/pet/delete")
+            let request = NSMutableURLRequest(URL:petUrl!)
+            request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+            request.HTTPMethod = "DELETE"
+            let session = NSURLSession(configuration:NSURLSessionConfiguration.defaultSessionConfiguration(), delegate: nil, delegateQueue: nil)
+            let deleteString = "pet_id=" + petId
+            request.HTTPBody = deleteString.dataUsingEncoding(NSUTF8StringEncoding)
+            
+            let task = session.dataTaskWithRequest(request){
+                (data, response, error) in
+//                do {
+//                    guard let json = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? NSArray else {
+//                        return
+//                    }
+                
+//                    print(json[0]["message"])
+                    
+                    print("Inside request")
+                    
+                    self.pets.removeAtIndex(indexPath.row)
+                    
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.petsTable.reloadData()
+                    }
+                    
+                    
+//                    print(json)
+//                } catch let error as NSError {
+//                    print(error.debugDescription)
+//                }
+            }
+            task.resume()
+            
+            
+            
         }
       
         editAction.backgroundColor=UIColor.blueColor()
