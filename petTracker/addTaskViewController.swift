@@ -30,35 +30,40 @@ class addTaskViewController: UIViewController {
         dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
         let reminderTimeValue = dateFormatter.stringFromDate(reminderTimeDate)
         
-        //connect to server
-        let petUrl = NSURL(string: "https://pettrackerapp.herokuapp.com/task/create")
-        let request = NSMutableURLRequest(URL:petUrl!)
-        request.HTTPMethod = "POST"
-        let postString = "taskTitle=" + titleValue! +
-            "&pet_id=" + petId! +
-            "&description=" + descriptionValue! +
-            "&reminderTime=" + reminderTimeValue
         
-        //start session/request
-        request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
-        
-        let task = NSURLSession.sharedSession().dataTaskWithRequest(request){
-            data, response, error in
-            
-            if error != nil {
-                print("error\(error)")
-                return
-            }
-            print("******Response =\(response)")
-            
-            
+        if(titleValue!.isEmpty ?? true){
+            let alert = UIAlertController(title: "Empty Fields", message: "Task title must be entered", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
         }
-        
-        task.resume()
-        print(postString)
-        
-        
-        
+        else{
+            //connect to server
+            let petUrl = NSURL(string: "https://pettrackerapp.herokuapp.com/task/create")
+            let request = NSMutableURLRequest(URL:petUrl!)
+            request.HTTPMethod = "POST"
+            let postString = "taskTitle=" + titleValue! +
+                "&pet_id=" + petId! +
+                "&description=" + descriptionValue! +
+                "&reminderTime=" + reminderTimeValue
+            
+            //start session/request
+            request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
+            
+            let task = NSURLSession.sharedSession().dataTaskWithRequest(request){
+                data, response, error in
+                
+                if error != nil {
+                    print("error\(error)")
+                    return
+                }
+                print("******Response =\(response)")
+            }
+            task.resume()
+            print(postString)
+            let alert = UIAlertController(title: "Task Added", message: "\(titleValue!)", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
     }
     override func viewDidLoad() {
         super.viewDidLoad()

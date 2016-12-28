@@ -58,6 +58,7 @@ class addPetViewController: UIViewController {
             }
             
             task.resume()
+            print(postString)
             let alert = UIAlertController(title: "Pet Added", message: "\(petNameValue!) was added", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)

@@ -100,7 +100,7 @@ class taskViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
         
         
-        //deleteAction.backgroundColor=UIColor.redColor()
+        deleteAction.backgroundColor=UIColor.redColor()
         
         return [deleteAction]
     }
@@ -111,6 +111,7 @@ class taskViewController: UIViewController, UITableViewDataSource, UITableViewDe
     {
         let defaults = NSUserDefaults.standardUserDefaults()
         let petId = defaults.stringForKey(defaultsKeys.petID)
+        self.navigationItem.title = defaults.stringForKey(defaultsKeys.petName)! + "'s Tasks"
         
         let petUrl = NSURL(string: "https://pettrackerapp.herokuapp.com/task/getTasksForPet")
         let request = NSMutableURLRequest(URL:petUrl!)
