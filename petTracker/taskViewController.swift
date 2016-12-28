@@ -12,15 +12,12 @@ class Task {
     
     var taskTitle = ""
     var taskDescription = ""
+    var taskId=""
 }
 
 class taskViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     var tasks = [Task]()
-    
-//    var tasksTitle = ["helo","things"]
-//    
-//    var descriptions = ["thing1", "thing2"]
     
     @IBOutlet weak var taskTable: UITableView!
     override func viewDidLoad() {
@@ -30,10 +27,6 @@ class taskViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.taskTable.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
         self.taskTable.dataSource=self
         self.taskTable.delegate=self
-        
-        getTasks()
-        
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,7 +44,7 @@ class taskViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let task = tasks[indexPath.row]
         
         cell.textLabel?.text = task.taskTitle
-        cell.detailTextLabel?.text = task.taskDescription
+        //cell.detailTextLabel?.text = task.taskDescription
         
         return cell
     }
@@ -74,28 +67,42 @@ class taskViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //Two Edit and delete action buttons are added to each cell
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         
-        
-        // Edit Button
-        let editAction = UITableViewRowAction(style: .Normal, title: "Edit"){ (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
-            
-//            let firstActivityItem=self.tasks[indexPath.row]
-//            let activityViewController = UIActivityViewController(activityItems: [firstActivityItem], applicationActivities: nil)
-//            self.presentViewController(activityViewController, animated: true, completion: nil)
-        }
-        
         //Delete Button
         let deleteAction = UITableViewRowAction(style: .Normal, title: "Delete"){ (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
+            let itemToDelete = self.tasks[indexPath.row]
             
-            let firstActivityItem=self.tasks[indexPath.row]
-            let activityViewController = UIActivityViewController(activityItems: [firstActivityItem], applicationActivities: nil)
-            self.presentViewController(activityViewController, animated: true, completion: nil)
+            print(itemToDelete.taskTitle)
+            let taskId = itemToDelete.taskId
+            
+            let petUrl = NSURL(string: "https://pettrackerapp.herokuapp.com/task/delete")
+            let request = NSMutableURLRequest(URL:petUrl!)
+            request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+            request.HTTPMethod = "DELETE"
+            let session = NSURLSession(configuration:NSURLSessionConfiguration.defaultSessionConfiguration(), delegate: nil, delegateQueue: nil)
+            let deleteString = "task_id=" + taskId
+            request.HTTPBody = deleteString.dataUsingEncoding(NSUTF8StringEncoding)
+            
+            let task = session.dataTaskWithRequest(request){
+                (data, response, error) in
+                
+                print("Inside request")
+                
+                self.tasks.removeAtIndex(indexPath.row)
+                
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.taskTable.reloadData()
+                }
+                
+            }
+            
+            task.resume()
+            
         }
         
         
-        editAction.backgroundColor=UIColor.blueColor()
-        deleteAction.backgroundColor=UIColor.redColor()
+        //deleteAction.backgroundColor=UIColor.redColor()
         
-        return [deleteAction,editAction]
+        return [deleteAction]
     }
     
     
@@ -125,6 +132,7 @@ class taskViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     let task = Task()
                     task.taskTitle = arr["taskTitle"] as! String
                     task.taskDescription = arr["description"] as! String
+                    task.taskId = arr["_id"] as! String
                     self.tasks.append(task)
                 }
                 
